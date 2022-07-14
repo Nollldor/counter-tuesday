@@ -19,8 +19,7 @@ export const Counter: FC<CounterPropsType> = ({
                                                   inc,
                                                   reset,
                                                   waitSettings,
-                                                  error,
-                                                  ...props
+                                                  error
                                               }) => {
 
     const displayValue = waitSettings ? "enter values and press set"

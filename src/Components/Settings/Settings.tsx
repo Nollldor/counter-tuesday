@@ -25,13 +25,13 @@ export const Settings: FC<SettingsPropsType> = ({
                                                     setError,
                                                     error,
                                                     constructError,
-                                                    ...props
                                                 }) => {
 
     const [disableSetButton, setDisableSetButton] = useState(true)
 
     const onChangeStart = (value: string) => {
-        changeStart(JSON.parse(value))
+        // changeStart(JSON.parse(value))
+        changeStart(+value)
         constructError(JSON.parse(value), end)
         if (JSON.parse(value) >= 0 && JSON.parse(value) < end) {
             setWaitSettings(true)

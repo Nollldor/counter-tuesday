@@ -15,7 +15,6 @@ function App() {
     const [endValue, setEndValue] = useState<number>(10)
     const [waitSettings, setWaitSettings] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
-
     const [countValue, setCountValue] = useState<number>(startValue)
 
     const constructError = (start: number, end: number) => {
@@ -32,23 +31,15 @@ function App() {
 
     useEffect(() => {
         const countValueFromLS = localStorage.getItem(localStorageKeys.countValue)
-        if (countValueFromLS) {
-            setCountValue(JSON.parse(countValueFromLS))
-        }
-
         const startValueFromLS = localStorage.getItem(localStorageKeys.startValue)
-        if (startValueFromLS) {
-            setStartValue(JSON.parse(startValueFromLS))
-        }
-
         const endValueFromLS = localStorage.getItem(localStorageKeys.endValue)
-        if (endValueFromLS) {
+
+        if (countValueFromLS && startValueFromLS && endValueFromLS) {
+            setCountValue(JSON.parse(countValueFromLS))
+            setStartValue(JSON.parse(startValueFromLS))
             setEndValue(JSON.parse(endValueFromLS))
+            constructError(JSON.parse(startValueFromLS), JSON.parse(endValueFromLS))
         }
-
-
-        if(startValueFromLS && endValueFromLS) constructError(JSON.parse(startValueFromLS), JSON.parse(endValueFromLS))
-
     }, [])
 
     useEffect(() => {
@@ -67,8 +58,6 @@ function App() {
     }
 
     const setStartEnd = () => {
-        setStartValue(startValue)
-        setEndValue(endValue)
         setCountValue(startValue)
     }
 
